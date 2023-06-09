@@ -6,6 +6,10 @@ from src.myMain.data.model.Voter import Voter
 from src.myMain.dtos.request.AdminRegistrationRequest import AdminRegistration
 from src.myMain.dtos.request.PartyRegistrationRequest import PartyRegistrationRequest
 from src.myMain.dtos.request.VoterRegistrationRequest import VoterRegistrationRequest
+from src.myMain.dtos.response.AdminRegistrationResponse import AdminRegistrationResponse
+from src.myMain.dtos.response.PartyRegistrationResponse import PartyRegistrationResponse
+from src.myMain.dtos.response.VoterRegistrationResponse import VoterRegistrationResponse
+from src.myMain.exceptions.RegistrationException import RegistrationException
 
 
 class App_utils:
@@ -51,4 +55,26 @@ class App_utils:
         voter.set_user_information(user_information)
         voter.set_address(address)
         return voter
+
+    @staticmethod
+    def map_voter_response(saved_voter: Voter) -> VoterRegistrationResponse:
+        if saved_voter is None: raise RegistrationException("Voter registration failed")
+        voter_registration_response: VoterRegistrationResponse = VoterRegistrationResponse()
+        voter_registration_response.set_message("Voter registration was successful")
+        voter_registration_response.set_user_name(saved_voter.get_user_information().get_user_name())
+        return voter_registration_response
+
+    @staticmethod
+    def map_party_response(saved_party: Party) -> PartyRegistrationResponse:
+        if saved_party is None: raise RegistrationException("Party registration failed")
+        party_registration_response: PartyRegistrationResponse = PartyRegistrationResponse()
+        party_registration_response.set_message("Party registration was successful")
+        return party_registration_response
+
+    @staticmethod
+    def map_admin_response(saved_admin: Admin) -> AdminRegistrationResponse:
+        if saved_admin is None: raise RegistrationException("Admin registration failed")
+        admin_registration_response: AdminRegistrationResponse = AdminRegistrationResponse()
+        admin_registration_response.set_message("Admin registration was successful")
+        return admin_registration_response
 

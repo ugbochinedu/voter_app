@@ -18,10 +18,8 @@ class PartyServiceImpl(PartyServiceInterface):
     def register(self, party_registration_request: PartyRegistrationRequest) -> PartyRegistrationResponse:
         party: Party = App_utils.map_party(party_registration_request)
         saved_party: Party = self.party_repository_impl.save(party)
-        if saved_party is None: raise RegistrationException("Party registration failed")
-        party_registration_response: PartyRegistrationResponse = PartyRegistrationResponse()
-        party_registration_response.set_message("Party registration was successful")
-        return party_registration_response
+
+        return App_utils.map_party_response(saved_party)
 
     def find_party_by_id(self, id: str) -> Party:
         return self.party_repository_impl.findById(id)

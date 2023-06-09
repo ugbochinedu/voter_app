@@ -18,10 +18,8 @@ class VoterServiceImpl(VoterServiceInterface):
     def register(self, voter_registration_request: VoterRegistrationRequest) -> VoterRegistrationResponse:
         voter: Voter = App_utils.map_voter(voter_registration_request)
         saved_voter: Voter = self.voter_repo.save(voter)
-        if saved_voter is None: raise RegistrationException("Voter registration failed")
-        voter_registration_response: VoterRegistrationResponse = VoterRegistrationResponse()
-        voter_registration_response.set_message("Voter registration was successful")
-        return voter_registration_response
+
+        return App_utils.map_voter_response(saved_voter)
 
     def find_voter_by_id(self, id: str) -> Voter:
         return self.voter_repo.findById(id)

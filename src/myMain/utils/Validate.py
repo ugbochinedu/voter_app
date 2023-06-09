@@ -22,14 +22,15 @@ def validate_password():
     if match:
         return True
     else:
-        print("Invalid word combination. Enter at least one Capital letter, one small letter and one number")
+        print("Invalid word combination. Enter at least one Capital letter, one small letter, one number and 8 "
+              "characters")
         validate_password()
     return password
 
 
 def validate_house_number():
-    house_number = collect_details("Enter your house number")
-    match = re.match(r'^(\d)$', house_number)
+    house_number = collect_details("Enter your house number: ")
+    match = re.match(r'^\d+', house_number)
     if match:
         return True
     else:
@@ -39,7 +40,7 @@ def validate_house_number():
 
 
 def validate_street():
-    street = collect_details("Enter your Street")
+    street = collect_details("Enter your Street: ")
     match = re.match(r'^[a-zA-Z ''-]*$', street)
     if match:
         return True
@@ -50,7 +51,7 @@ def validate_street():
 
 
 def validate_state():
-    state = collect_details("Enter your State")
+    state = collect_details("Enter your State: ")
     match = re.match(r'^[a-zA-Z ''-]*$', state)
     if match:
         return True
@@ -61,7 +62,7 @@ def validate_state():
 
 
 def validate_lga():
-    lga = collect_details("Enter your local government")
+    lga = collect_details("Enter your local government: ")
     match = re.match(r'^[a-zA-Z ''-]*$', lga)
     if match:
         return True
@@ -72,19 +73,21 @@ def validate_lga():
 
 
 def validate_age():
-    age = collect_details("Enter your age")
-    match = re.match(r'^(\d)$', age)
+    age = collect_details("Enter your age: ")
+    match = re.match(r'^\d+', age)
     if match:
         return True
     else:
         print("Enter valid number")
+        validate_age()
     return age
 
 
 def validate_gender():
-    gender = collect_details("Enter your gender. male or female")
+    gender = collect_details("Enter your gender. male or female: ")
     match = re.match(r'^[a-zA-Z]*$', gender)
     if match:
         return True
     else:
         print("invalid, Your gender should not contain numbers, put in letters only")
+        validate_gender()

@@ -17,10 +17,8 @@ class AdminServiceImpl(AdminServiceInterface):
     def register(self, admin_registration_request: AdminRegistration) -> AdminRegistrationResponse:
         admin: Admin = App_utils.map_admin(admin_registration_request)
         saved_admin: Admin = self.admin_repo.save(admin)
-        if saved_admin is None: raise RegistrationException("Admin registration failed")
-        admin_registration_response: AdminRegistrationResponse = AdminRegistrationResponse()
-        admin_registration_response.set_message("Admin registration was successful")
-        return admin_registration_response
+
+        return App_utils.map_admin_response(saved_admin)
 
     def find_admin_by_id(self, id: str) -> Admin:
         return self.admin_repo.findById(id)
