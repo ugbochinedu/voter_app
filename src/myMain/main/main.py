@@ -1,3 +1,4 @@
+from src.myMain.Controller.PartyController import PartyController
 from src.myMain.Controller.VoterController import VoterController
 from src.myMain.dtos.request.VoterRegistrationRequest import VoterRegistrationRequest
 from src.myMain.utils.Validate import validate_password, validate_username, validate_house_number, \
@@ -6,6 +7,7 @@ from src.myMain.utils.Validate import validate_password, validate_username, vali
 
 class Main:
     voter_controller: VoterController = VoterController()
+    party_controller: PartyController = PartyController()
 
     def collect_details(self, message):
         return input(message)
@@ -32,16 +34,16 @@ class Main:
         print(self.voter_controller.register_new_voter(register_voter))
 
     def find_registered_voter(self, id):
-        pass
+        print(self.voter_controller.find_registered_voter(id))
 
     def delete_voter(self, id):
-        pass
+        print(self.voter_controller.delete_voter(id))
 
     def register_party(self):
         pass
 
     def find_party(self, id):
-        pass
+        self.find_party(id)
 
     def delete_party(self, id):
         pass
@@ -64,7 +66,6 @@ if __name__ == '__main__':
     6-> Delete party
     7-> Find all parties
     8-> Add Admin
-    
     """
     main = Main()
     # main.collect_details(MainMenu)

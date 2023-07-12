@@ -26,7 +26,7 @@ class VoterServiceImpl(VoterServiceInterface):
 
     def delete_by_id(self, id: str) -> DeleteVoterResponse:
         self.voter_repo.deleteById(id)
-        return DeleteVoterResponse.set_message("Voter deleted successful")
+        return DeleteVoterResponse.set_message("Voter deleted successfully")
 
     def find_all(self) -> List[Voter]:
         return self.voter_repo.findAll()

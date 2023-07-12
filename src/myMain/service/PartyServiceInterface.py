@@ -14,7 +14,7 @@ class PartyServiceInterface(ABC):
         pass
 
     @abstractmethod
-    def find_party_by_id(self, id: str) -> Admin:
+    def find_party_by_id(self, id: str) -> Party:
         pass
 
     @abstractmethod
